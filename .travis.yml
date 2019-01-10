@@ -95,7 +95,3 @@ notifications:
     - secure: rGMGYWBaZgEa9i997jJHKzjI8WxECqLi6BqsMhvstDq9EeTeXkZFVfz4r6G3Xugsk3tFwb/pDpiYo1OK36kA5arUJTCia51u4Wn+c7lHKcpef/vXztoyucvw6/jXdVm/FQz1jztYYbqdyAOWC2BV8gYvg5F8TpK05UGCe5R0bRA=
   on_success: change
   on_failure: always
-
-env:
-  global:
-    - FORCE_COLOR=1
