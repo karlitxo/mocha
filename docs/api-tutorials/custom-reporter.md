@@ -27,7 +27,7 @@ class MyReporter extends Base {
     this._indents = 0;
 
     runner
-      .once(RUNNER_EVENT_START, () => {
+      .once(RUNNER_EVENT_BEGIN, () => {
         console.log('start');
       })
       .on(RUNNER_EVENT_SUITE, () => {
@@ -92,7 +92,7 @@ The event names are exported from the `constants` property of `Mocha.Runner`:
 | `RUNNER_EVENT_PASS`      | `pass`      | `Test`          | A [Test] has passed                                                                         |
 | `RUNNER_EVENT_PENDING`   | `pending`   | `Test`          | A [Test] was skipped                                                                        |
 | `RUNNER_EVENT_RETRY`     | `retry`     | `Test`, `Error` | A [Test] failed, but is about to be retried; never emitted unless `retry` option is nonzero |
-| `RUNNER_EVENT_START`     | `start`     | _(n/a)_         | Execution will begin                                                                        |
+| `RUNNER_EVENT_BEGIN`     | `start`     | _(n/a)_         | Execution will begin                                                                        |
 | `RUNNER_EVENT_SUITE`     | `suite`     | `Suite`         | The [Hook]s and [Test]s within a [Suite] are about to be executed                           |
 | `RUNNER_EVENT_SUITE_END` | `suite end` | `Suite`         | The [Hook]s and [Test]s within a [Suite] (and any children [Suite]s) completed execution    |
 | `RUNNER_EVENT_TEST`      | `test`      | `Test`          | A [Test] is about to be executed                                                            |
@@ -101,7 +101,7 @@ The event names are exported from the `constants` property of `Mocha.Runner`:
 
 **Please use these constants** instead of the event names in your own reporter! This will ensure compatibility with future versions of Mocha.
 
-> It's important to understand that all suite callbacks will be run _before_ the [Runner] emits `RUNNER_EVENT_START`. Hooks and tests, however, won't run until _after_ the [Runner] emits `RUNNER_EVENT_START`.
+> It's important to understand that all suite callbacks will be run _before_ the [Runner] emits `RUNNER_EVENT_BEGIN`. Hooks and tests, however, won't run until _after_ the [Runner] emits `RUNNER_EVENT_BEGIN`.
 
 ## Custom Reporter for Browser
 

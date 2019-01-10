@@ -1,7 +1,6 @@
 'use strict';
 
 var Mocha = require('../../');
-var Runner = Mocha.Runner;
 
 var mocha = new Mocha({
   ui: 'bdd',
@@ -22,10 +21,6 @@ mocha.addFile('test/unit/duration.spec.js');
 mocha.addFile('test/unit/globals.spec.js');
 mocha.addFile('test/unit/timeout.spec.js');
 
-mocha
-  .run(function() {
-    console.log('done');
-  })
-  .on(Runner.constants.RUNNER_EVENT_PASS, function(test) {
-    // console.log('... %s', test.title);
-  });
+mocha.run(function() {
+  console.log('done');
+});
