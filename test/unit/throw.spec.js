@@ -112,7 +112,7 @@ describe('a test that throws', function() {
       });
       suite.addTest(test);
       runner = new Runner(suite);
-      runner.on(Runner.constants.RUNNER_EVENT_END, function() {
+      runner.on(RUNNER_EVENT_END, function() {
         expect(runner.failures, 'to be', 1);
         expect(test.state, 'to be', 'failed');
         done();

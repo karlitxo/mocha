@@ -90,7 +90,8 @@ module.exports = {
           fn(
             new Error(
               format(
-                'Failed to parse JSON reporter output from result:\n\n%O',
+                'Failed to parse JSON reporter output.\nArgs: %O\nResult:\n\n%O',
+                args,
                 res
               )
             )
@@ -212,7 +213,8 @@ function _spawnMochaWithListeners(args, fn, opts) {
   mocha.on('close', function(code) {
     fn(null, {
       output: output.split('\n').join('\n'),
-      code: code
+      code: code,
+      args: args
     });
   });
 
