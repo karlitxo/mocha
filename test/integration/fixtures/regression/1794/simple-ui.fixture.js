@@ -8,7 +8,7 @@ var Suite = Mocha.Suite;
  * A simple UI that only exposes a single function: test
  */
 module.exports = Mocha.interfaces['simple-ui'] = function(suite) {
-  suite.on(Suite.constants.SUITE_EVENT_PRE_REQUIRE, function(
+  suite.on(Suite.constants.EVENT_FILE_PRE_REQUIRE, function(
     context,
     file,
     mocha
