@@ -104,10 +104,6 @@ The event names are exported from the `constants` property of `Mocha.Runner`:
 
 > It's important to understand that all suite callbacks will be run _before_ the [Runner] emits `RUNNER_EVENT_BEGIN`. Hooks and tests, however, won't run until _after_ the [Runner] emits `RUNNER_EVENT_BEGIN`.
 
-## Custom Reporter for Browser
-
-Custom reporters are _only_ "officially" supported in Node.js.
-
 [runner]: /api/mocha.runner
 [test]: /api/mocha.test
 [hook]: /api/mocha.hook
