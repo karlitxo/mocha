@@ -1,7 +1,6 @@
 'use strict';
 
 var mocha = require('../../lib/mocha');
-var utils = mocha.utils;
 var Runnable = mocha.Runnable;
 var Suite = mocha.Suite;
 var sinon = require('sinon');
@@ -418,7 +417,7 @@ describe('Runnable(title, fn)', function() {
           });
 
           runnable.run(function(err) {
-            expect(err.message, 'to be', utils.undefinedError().message);
+            expect(err.message, 'to be', Runnable.getError().message);
             done();
           });
         });
@@ -710,6 +709,18 @@ describe('Runnable(title, fn)', function() {
         expect(runnable.timedOut, 'to be', false);
         done();
       }, 20);
+    });
+  });
+
+  describe('static method', function() {
+    describe('getError', function() {
+      it('should return identity if parameter is truthy', function() {
+        expect(Runnable.getError('foo'), 'to be', 'foo');
+      });
+
+      it('should return an Error if parameter is falsy', function() {
+        expect(Runnable.getError(null), 'to be an', Error);
+      });
     });
   });
 });

@@ -250,7 +250,7 @@ describe('User', function() {
 });
 ```
 
-To make things even easier, the `done()` callback also accepts an `Error` instance (i.e. `new Error()`), so we may use this directly:
+Alternatively, just use the `done()` callback directly (which will handle an error argument, if it exists):
 
 ```js
 describe('User', function() {
@@ -288,6 +288,7 @@ In Mocha v3.0.0 and newer, returning a `Promise` _and_ calling `done()` will res
 ```js
 const assert = require('assert');
 
+// antipattern
 it('should complete this test', function(done) {
   return new Promise(function(resolve) {
     assert.ok(true);
@@ -495,7 +496,7 @@ describe('Array', function() {
 });
 ```
 
-Previous to v3.0.0, `.only()` used string matching to decide which tests to execute. As of v3.0.0, this is no longer the case. In v3.0.0 or newer, `.only()` can be used multiple times to define a subset of tests to run:
+Previous to v3.0.0, `.only()` used string matching to decide which tests to execute; this is no longer the case. In v3.0.0 or newer, `.only()` can be used multiple times to define a subset of tests to run:
 
 ```js
 describe('Array', function() {
@@ -931,7 +932,7 @@ _Prior to_ version v4.0.0, _by default_, Mocha would force its own process to ex
 
 "Hanging" most often manifests itself if a server is still listening on a port, or a socket is still open, etc. It can also be something like a runaway `setInterval()`, or even an errant `Promise` that never fulfilled.
 
-The _default behavior_ in v4.0.0 is `--no-exit`, where previously it was `--exit`.
+The _default behavior_ in v4.0.0 (and newer) is `--no-exit`, where previously it was `--exit`.
 
 **The easiest way to "fix" the issue is to simply pass `--exit` to the Mocha process.** It _can_ be time-consuming to debug--because it's not always obvious where the problem is--but it _is_ recommended to do so.
 
@@ -1733,11 +1734,11 @@ When Mocha itself throws exception, the associated `Error` will have a `code` pr
 | ERR_MOCHA_INVALID_ARG            | argument is invalid                                          |
 | ERR_MOCHA_INVALID_ARG_TYPE       | argument of the wrong type was passed to Mocha's API         |
 | ERR_MOCHA_INVALID_ARG_VALUE      | invalid or unsupported value was passed for a given argument |
+| ERR_MOCHA_INVALID_EXCEPTION      | a falsy or otherwise underspecified exception was thrown     |
 | ERR_MOCHA_INVALID_INTERFACE      | interface specified in options not found                     |
 | ERR_MOCHA_INVALID_REPORTER       | reporter specified in options not found                      |
 | ERR_MOCHA_NO_FILES_MATCH_PATTERN | file/s of test could not be found                            |
-| ERR_MOCHA_NOT_SUPPORTED          | type of output specified was not supported                   |
-| ERR_MOCHA_UNDEFINED_ERROR        | an error was thrown but no details were specified            |
+| ERR_MOCHA_UNSUPPORTED            | requested behavior, option, or parameter is unsupported      |
 
 ## Editor Plugins
 
