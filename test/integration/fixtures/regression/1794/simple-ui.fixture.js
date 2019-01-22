@@ -2,13 +2,13 @@
 
 var Mocha = require('../../../../../lib/mocha');
 var Test = Mocha.Test;
-var Suite = Mocha.Suite;
+var EVENT_FILE_PRE_REQUIRE = Mocha.Suite.constants.EVENT_FILE_PRE_REQUIRE;
 
 /**
  * A simple UI that only exposes a single function: test
  */
 module.exports = Mocha.interfaces['simple-ui'] = function(suite) {
-  suite.on(Suite.constants.EVENT_FILE_PRE_REQUIRE, function(
+  suite.on(EVENT_FILE_PRE_REQUIRE, function(
     context,
     file,
     mocha
