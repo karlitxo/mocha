@@ -9,7 +9,7 @@ exports.mixinMochaAssertions = function(expect) {
         return (
           Object.prototype.toString.call(v) === '[object Object]' &&
           typeof v.output === 'string' &&
-          typeof v.code === 'number' &&
+          'code' in v && // may be null, depending
           Object.keys(v).length === 2
         );
       }
@@ -59,9 +59,9 @@ exports.mixinMochaAssertions = function(expect) {
       }
     )
     .addAssertion(
-      '<RawResult|RawRunResult|JSONRunResult> [not] to have [completed with] [exit] code <number>',
+      '<RawRunResult|JSONRunResult> [not] to have completed with [exit] code <number>',
       function(expect, result, code) {
-        expect(result, '[not] to have property', 'code', code);
+        expect(result.code, '[not] to be', code);
       }
     )
     .addAssertion(
@@ -290,10 +290,17 @@ exports.mixinMochaAssertions = function(expect) {
         });
       }
     )
+    .addAssertion('<RawRunResult> [not] to contain output <any>', function(
+      expect,
+      result,
+      output
+    ) {
+      expect(result.output, '[not] to satisfy', output);
+    })
     .addAssertion(
-      '<RawResult|RawRunResult> [not] to contain [output] <any>',
-      function(expect, result, output) {
-        expect(result.output, '[not] to satisfy', output);
+      '<RawRunResult|JSONRunResult> to have [exit] code <number>',
+      function(expect, result, code) {
+        expect(result.code, 'to be', code);
       }
     );
 };
